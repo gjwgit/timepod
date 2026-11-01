@@ -71,11 +71,11 @@ window to restore to the original app.
 
 ![TimePod as a Desktop Clock](assets/screenshots/timepod_linux_landscape_desktop.png)
 
-The app can quietly sit inconspicuously in a small window on your
-computer's desktop. Dark mode and light mode are supported. Tap the
-full screen icon in the top toolbar to display the clock over the
-whole screen, while turning off the screen sleep mode. Tap the `ESC`
-key or click in the window to restore to the original window.
+The app can sit inconspicuously in a small window on your computer's
+desktop. Dark mode and light mode are supported. Tap the full screen
+icon in the top toolbar to display the clock over the whole screen,
+while turning off the screen sleep mode. Tap the `ESC` key or click in
+the window to restore to the original window.
 
 On a technical note we see here the standard
 [solidui](https://pub.dev/packages/solidui) scaffold that houses the
