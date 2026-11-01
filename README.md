@@ -101,15 +101,11 @@ eventually whre calendar events can be securely and privately stored
 and shared, if you choose, with other TimePod users. Some of the
 functionality below will depend on supporting Solid Pods.
 
-+ Like the fullscreen mode add a mode where only the clock screen is
-  shown with an optional transparent background, a little like conky,
-  as a clock sitting on the desktop.
++ Dim the display overnight
 
 + Configurable font and colour.
 
 + Add an alarm
-
-+ Dim the display overnight
 
 + Add a calendar function to record event dates and times. A popup
   will appear at that date/time with the correspending event
