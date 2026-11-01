@@ -30,9 +30,9 @@ Clock](https://github.com/schorschii/FsClock-Android) 2.2 by Georg
 Sieber, an Android app that is also free software under the GNU
 General Public License version 3.
 
-The app is supported by [Togaware](https://togaware.com) and
-implemented by [Graham
-Williams](https://togaware.com/Graham.Williams.html) in
+The app is developed by [Togaware](https://togaware.com) and
+implemented by Claude Code under the supervision of [Graham
+Williams](https://togaware.com/Graham.Williams.html) using
 [Flutter](https://flutter.dev) for cross platform deployment.
 
 We make this project available for free so if you appreciate the app
