@@ -1,1 +1,48 @@
-# timepod
+# TimePod - Privacy-First Fullscreen Clock
+
+[![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
+
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/gjwgit/timepod)
+[![GitHub License](https://img.shields.io/github/license/gjwgit/timepod)](https://raw.githubusercontent.com/gjwgit/timepod/dev/LICENSE)
+[![Last Updated](https://img.shields.io/github/last-commit/gjwgit/timepod?label=last%20updated)](https://github.com/gjwgit/timepod/commits/dev/)
+[![GitHub Issues](https://img.shields.io/github/issues/gjwgit/timepod)](https://github.com/gjwgit/timepod/issues)
+
+[TimePod](https://gjwgit.github.io/timepod/) shows a large clock,
+analog, digital or both, with the weekday and date. Tap
+**Fullscreen** to fill the screen with the clock and keep the screen
+awake. Leave it running on a spare phone, tablet or monitor as a
+bedside or desk clock. The fullscreen clock drifts a little every
+minute so an OLED screen does not burn in. Under **Display** choose
+what the clock shows: the analog face, the digits, the date, the
+seconds, and 24 or 12 hour time.
+
+The app needs no login and sends nothing anywhere. Logging in to your
+own personal online data store (Pod) is optional, ready for features
+that keep your data private and encrypted on your own Pod. Pods are
+an innovation from the inventor of the World Wide Web, Sir Tim
+Berners-Lee. For more information visit the [Solid
+Project](https://solidproject.org). **You do not need a Solid Pod to
+use this app.**
+
+TimePod is based on [Fullscreen
+Clock](https://github.com/schorschii/FsClock-Android) 2.2 by Georg
+Sieber, an Android app that is also free software under the GNU
+General Public License version 3.
+
+The app is supported by [Togaware](https://togaware.com) and
+implemented by [Graham
+Williams](https://togaware.com/Graham.Williams.html) in
+[Flutter](https://flutter.dev) for cross platform deployment.
+
+We make this project available for free so if you appreciate the app
+then please show some ❤️ and tap on the star at
+[GitHub](https://github.com/gjwgit/timepod) to support our work. See
+the [AU Solid Community](https://solidcommunity.au) **showcase** for
+our apps using the Solid ecosystem.
+
+## Installation
+
+See the [Install
+Guide](https://gjwgit.github.io/timepod/INSTALL.html) for
+installation instructions for any platform.

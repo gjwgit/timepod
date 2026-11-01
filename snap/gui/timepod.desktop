@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=TimePod
+Comment=Simple, Private, Secure Fullscreen Clock
+Exec=timepod
+Icon=${SNAP}/meta/gui/icon.png
+Terminal=false
+Type=Application
+Categories=Utility;Clock;
+Keywords=clock;time;date;fullscreen;screensaver;solid;pod;

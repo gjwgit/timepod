@@ -1,0 +1,47 @@
+# Changes here will be overwritten by Copier. Change a value with
+# `copier update --data key=value` or by editing it here and running
+# `copier update`.
+_commit: v0.8.2
+_src_path: gh:gjwgit/fluttertmpl
+kind: app
+android: true
+app: timepod
+owner: gjwgit
+copyright: 2026, Togaware Pty Ltd
+publisher: Togaware Pty Ltd
+name: TimePod
+summary: A privacy-first fullscreen clock
+comment: Simple, Private, Secure Fullscreen Clock
+categories:
+- Utility
+- Clock
+keywords:
+- clock
+- time
+- date
+- fullscreen
+- screensaver
+- solid
+- pod
+build: {}
+deb:
+  section: utils
+snap: {}
+windows:
+  appid: 357AB125-D419-4478-BEC9-F7294AA1C209
+install:
+  folder: /var/www/html/web/installers/
+  host: solidcommunity.au
+  prod: true
+  url: https://solidcommunity.au/installers/
+stores: {}
+flatpak: null
+description: |
+  TimePod shows a large clock that fills the screen, analog, digital or
+  both, with the weekday and date beneath. Leave it running on a spare
+  phone, tablet or monitor as a bedside or desk clock. The clock face
+  drifts a little every minute so an OLED screen does not burn in.
+
+  The app needs no login and sends nothing anywhere. A login to your
+  Solid Pod is optional, ready for features that store your settings
+  privately and encrypted on your own Pod.
