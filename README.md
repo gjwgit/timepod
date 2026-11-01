@@ -54,8 +54,8 @@ screen looks the same across the devices from phones, tablets,
 desktops and in a browser. As with all solidui apps, the screen size
 is remembered on restarting the app.
 
-To just try it without any installation required visit [TimePod
-Web](https://timepod.solidcommunity.au).
+To try it without any installation visit [TimePod
+Web](https://timepod.solidcommunity.au) in your browser.
 
 ![TimePod running in a browser](assets/screenshots/timepod_web_landscape.png)
 
