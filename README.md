@@ -84,6 +84,12 @@ On a technical note we see here the standard
 [solidui](https://pub.dev/packages/solidui) scaffold that houses the
 TimePod app including the top toolbar and the bottom app buttons.
 
+## Transparent Desktop Clock
+
+![Transparent TimePod on the desktop](assets/screenshots/timepod_linux_transparent_desktop.png)
+
+The desktop transparent mode allows the time to sit by itself on the desktop.
+
 ## Roadmap
 
 TimePod is built using the [SolidUI](https://solidcommunity.au)

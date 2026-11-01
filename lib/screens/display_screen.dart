@@ -27,6 +27,8 @@ library;
 
 import 'package:flutter/material.dart';
 
+import 'package:solidui/solidui.dart' show isDesktop;
+
 import 'package:timepod/models/clock_option.dart';
 import 'package:timepod/services/clock_prefs.dart';
 import 'package:timepod/widgets/option_switch.dart';
@@ -43,7 +45,8 @@ class DisplayScreen extends StatelessWidget {
       builder: (context, _) => ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          for (final option in ClockOption.values) OptionSwitch(option: option),
+          for (final option in ClockOption.values)
+            if (isDesktop || !option.desktopOnly) OptionSwitch(option: option),
         ],
       ),
     );

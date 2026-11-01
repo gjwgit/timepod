@@ -32,11 +32,14 @@ import 'package:solidui/solidui.dart';
 
 import 'package:timepod/constants/app.dart';
 import 'package:timepod/screens/clock_screen.dart';
+import 'package:timepod/screens/desktop_clock.dart';
 import 'package:timepod/screens/display_screen.dart';
 import 'package:timepod/screens/fullscreen_clock.dart';
+import 'package:timepod/services/desktop_window.dart';
 
-/// The scaffold: the Clock and Display pages, a Fullscreen button in the app
-/// bar, and the login status for the optional Pod.
+/// The scaffold: the Clock and Display pages, Fullscreen and, on a desktop,
+/// Desktop Clock buttons in the app bar, and the login status for the
+/// optional Pod.
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -52,6 +55,16 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _loadWebId();
+    _reopenDesktopClock();
+  }
+
+  // 20261102 gjw An app closed as the desktop clock opens as it again, as a
+  // clock started with the desktop would want.
+
+  Future<void> _reopenDesktopClock() async {
+    if (isDesktop && await DesktopWindow.wasOn() && mounted) {
+      await DesktopClock.open(context);
+    }
   }
 
   Future<void> _loadWebId() async {
@@ -72,6 +85,17 @@ class _HomeState extends State<Home> {
                 'the screen awake. Tap, or press Escape, to come back.',
             onPressed: () => FullscreenClock.open(context),
           ),
+          if (isDesktop)
+            SolidAppBarAction(
+              icon: Icons.desktop_windows_outlined,
+              tooltip:
+                  '**Desktop Clock**\n\nShow just the clock in a small window '
+                  'with no frame, sitting on the desktop. Drag it to move it '
+                  'and drag its edges to resize it. Double-click it, '
+                  'right-click it, or press Escape, to come back. Display '
+                  'chooses whether the desktop shows through it.',
+              onPressed: () => DesktopClock.open(context),
+            ),
         ],
 
         // 20261002 gjw Always supply the versionConfig. SolidScaffold loads the
@@ -94,7 +118,8 @@ class _HomeState extends State<Home> {
         text: '''
 TimePod shows a large clock, analog, digital or both, with the weekday and
 date. Tap Fullscreen to fill the screen with it and keep the screen awake, as
-a bedside or desk clock on a spare phone, tablet or monitor.
+a bedside or desk clock on a spare phone, tablet or monitor. On a desktop,
+Desktop Clock shows just the clock in a small window on the desktop.
 
 The app needs no login and sends nothing anywhere. Logging in to a Solid Pod
 is optional, ready for features that keep your data private and encrypted on

@@ -43,6 +43,23 @@ const appDirectory = 'timepod';
 
 const seedColour = Color(0xFF2E5A88);
 
+// 20261101 gjw Dark whatever the app's theme, since the clock is often left
+// running at night, and black pixels on an OLED screen are switched off.
+//
+// 20261102 gjw Shared by the fullscreen and the desktop clocks. Light on dark
+// also reads on most desktop backgrounds when the desktop clock is
+// transparent.
+
+/// The theme of the clock shown on its own, light on black.
+
+final clockTheme = ThemeData(
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: seedColour,
+    brightness: Brightness.dark,
+    surface: Colors.black,
+  ),
+);
+
 /// The CHANGELOG, linked from the version shown in the app bar.
 
 const changelogUrl = 'https://github.com/gjwgit/timepod/blob/dev/CHANGELOG.md';

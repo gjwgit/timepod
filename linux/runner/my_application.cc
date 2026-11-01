@@ -54,6 +54,16 @@ static void my_application_activate(GApplication* application) {
 
   gtk_window_set_default_size(window, 900, 600);
 
+  // 20261102 gjw An RGBA visual, when the desktop is composited, so the
+  // desktop clock can be transparent. The app paints over all of the window
+  // otherwise, so nothing else changes.
+
+  GdkScreen* rgba_screen = gtk_window_get_screen(window);
+  GdkVisual* rgba_visual = gdk_screen_get_rgba_visual(rgba_screen);
+  if (rgba_visual != nullptr && gdk_screen_is_composited(rgba_screen)) {
+    gtk_widget_set_visual(GTK_WIDGET(window), rgba_visual);
+  }
+
   g_autoptr(FlDartProject) project = fl_dart_project_new();
   fl_dart_project_set_dart_entrypoint_arguments(
       project, self->dart_entrypoint_arguments);
@@ -80,7 +90,10 @@ static void my_application_activate(GApplication* application) {
   GdkRGBA background_color;
   // Background defaults to black, override it here if necessary, e.g. #00000000
   // for transparent.
-  gdk_rgba_parse(&background_color, "#000000");
+  //
+  // 20261102 gjw Transparent, for the transparent desktop clock.
+
+  gdk_rgba_parse(&background_color, "#00000000");
   fl_view_set_background_color(view, &background_color);
   gtk_widget_show(GTK_WIDGET(view));
   gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(view));

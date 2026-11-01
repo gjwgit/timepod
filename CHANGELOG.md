@@ -21,6 +21,10 @@ then please show some ❤️ and tap on the star at
 This app is authored by [Graham
 Williams](https://togaware.com/Graham.Williams.html).
 
+## 0.2 A Desktop Clock
+
++ Desktop clock, optionally transparent, on the desktop [0.2.0 20261102 gjw]
+
 ## 0.1 A Fullscreen Clock
 
 + Analog and digital clock with date and fullscreen [0.1.0 20261101 gjw]

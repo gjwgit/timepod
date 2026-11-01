@@ -38,9 +38,15 @@ enum ClockOption {
     'Burn-in protection',
     'Shift the fullscreen clock a little each minute so the face does not '
         'burn into an OLED screen.',
+  ),
+  transparent(
+    'Transparent desktop clock',
+    'Show the desktop through the desktop clock rather than a black '
+        'background.',
+    desktopOnly: true,
   );
 
-  const ClockOption(this.title, this.description);
+  const ClockOption(this.title, this.description, {this.desktopOnly = false});
 
   /// The label of the option's switch.
 
@@ -49,6 +55,11 @@ enum ClockOption {
   /// A sentence beneath the label saying what the option does.
 
   final String description;
+
+  /// Whether the option only applies on a desktop, so Display shows it only
+  /// there.
+
+  final bool desktopOnly;
 
   /// The SharedPreferences key the choice is saved under.
 

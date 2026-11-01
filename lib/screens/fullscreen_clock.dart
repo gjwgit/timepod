@@ -56,17 +56,6 @@ class FullscreenClock extends StatefulWidget {
 }
 
 class _FullscreenClockState extends State<FullscreenClock> {
-  // 20261101 gjw Dark whatever the app's theme, since the clock is often left
-  // running at night, and black pixels on an OLED screen are switched off.
-
-  static final _dark = ThemeData(
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: seedColour,
-      brightness: Brightness.dark,
-      surface: Colors.black,
-    ),
-  );
-
   @override
   void initState() {
     super.initState();
@@ -95,7 +84,7 @@ class _FullscreenClockState extends State<FullscreenClock> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: _dark,
+      data: clockTheme,
       child: Scaffold(
         backgroundColor: Colors.black,
         body: CallbackShortcuts(
