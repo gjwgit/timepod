@@ -30,10 +30,10 @@ Clock](https://github.com/schorschii/FsClock-Android) 2.2 by Georg
 Sieber, an Android app that is also free software under the GNU
 General Public License version 3.
 
-The app is developed by [Togaware](https://togaware.com) and
-implemented by Claude Code under the supervision of [Graham
-Williams](https://togaware.com/Graham.Williams.html) using
-[Flutter](https://flutter.dev) for cross platform deployment.
+The app is developed by [Togaware](https://togaware.com) utilising
+ Claude Code using our [solidui](https://pub.dev/packages/solidui)
+ template for the [Flutter](https://flutter.dev) framework for a cross
+ platform deployment.
 
 We make this project available for free so if you appreciate the app
 then please show some ❤️ and tap on the star at
@@ -51,8 +51,9 @@ installation instructions for any platform.
 
 Here we walk through TimePod on various platforms and use cases. Every
 screen looks the same across the devices from phones, tablets,
-desktops and in a browser. As with all solidui apps, the screen size
-is remembered on restarting the app.
+desktops and in a browser. As with all
+[solidui](https://solidcommunity.au/showcase) apps, the screen size is
+remembered on restarting the app.
 
 To try it without any installation visit [TimePod
 Web](https://timepod.solidcommunity.au) in your browser.
