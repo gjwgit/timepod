@@ -76,3 +76,29 @@ computer's desktop. Dark mode and light mode are supported. Tap the
 full screen icon in the top toolbar to display the clock over the
 whole screen, while turning off the screen sleep mode. Tap the `ESC`
 key or click in the window to restore to the original window.
+
+On a technical note we see here the standard
+[solidui](https://pub.dev/packages/solidui) scaffold that houses the
+TimePod app including the top toolbar and the bottom app buttons.
+
+## Roadmap
+
+TimePod is built using the [SolidUI](https://solidcommunity.au)
+framework. This framework utilises open standard Solid Servers to
+store any data within your personal online datastore (Pods). At this
+time (November 2026) the Pod functionality is not utilised no data is
+collected by the app nor shared with anyone. I do plan to support Pods
+eventually whre calendar events can be securely and privately stored
+and shared, if you choose, with other TimePod users. Some of the
+functionality below will depend on supporting Solid Pods.
+
++ Add a calendar function to record event dates and times. A popup
+  will appear at that date/time with the correspending event
+  details. The popup remains until dismissed.
+
++ Allow individual events to be share with other Pods. A family might
+  all be running TimePod to have the reminders popup for everyone.
+
++ Access RoloPod data within the user's Pod to catch birthdays,
+  wedding anniversaries, etc, and then popup a reminder in TimePod the
+  day before.
