@@ -46,3 +46,17 @@ our apps using the Solid ecosystem.
 See the [Install
 Guide](https://gjwgit.github.io/timepod/INSTALL.html) for
 installation instructions for any platform.
+
+## Screens
+
+Here we walk through TimePod on various platforms and use cases. Every
+screen looks the same across the devices from phones, tablets,
+desktops and in a browser. As with all solidui apps, the screen size
+is remembered on restarting the app.
+
+### The Family Room Clock
+
+![TimePod as a Clock](assets/screenshots/timepod_android_landscape_fullscreen.png)
+
+The app can be installed on a retired Android phone and sit in the
+family room as the family clock.
