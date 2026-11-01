@@ -54,9 +54,25 @@ screen looks the same across the devices from phones, tablets,
 desktops and in a browser. As with all solidui apps, the screen size
 is remembered on restarting the app.
 
+To just try it out witjhout any installation required, visit [TimePod
+Web](https://timepod.solidcommunity.au).
+
 ### The Family Room Clock
 
-![TimePod as a Clock](assets/screenshots/timepod_android_landscape_fullscreen.png)
+![TimePod as a Family Room Clock](assets/screenshots/timepod_android_landscape_fullscreen.png)
 
 The app can be installed on a retired Android phone and sit in the
-family room as the family clock.
+family room as the family clock. We get into this mode with a tap of
+the full screen icon in the top toolbar to display the clock over the
+whole screen, while turning off the screen sleep mode. Tap in the
+window to restore to the original app.
+
+### The Desktop Clock
+
+![TimePod as a Desktop Clock](assets/screenshots/timepod_linux_landscape_desktop.png)
+
+The app can quietly sit inconspicuously in a small window on your
+computer's desktop. Dark mode and light mode are supported. Tap the
+full screen icon in the top toolbar to display the clock over the
+whole screen, while turning off the screen sleep mode. Tap the `ESC`
+key or click in the window to restore to the original window.
