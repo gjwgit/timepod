@@ -23,6 +23,7 @@ Williams](https://togaware.com/Graham.Williams.html).
 
 ## 0.2 A Desktop Clock
 
++ Android icon fills the launcher icon, not a white plate [0.2.1 20261102 gjw]
 + Desktop clock, optionally transparent, on the desktop [0.2.0 20261102 gjw]
 
 ## 0.1 A Fullscreen Clock
