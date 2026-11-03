@@ -32,8 +32,10 @@ import 'package:solidui/solidui.dart' show isDesktop;
 import 'package:timepod/models/clock_option.dart';
 import 'package:timepod/services/clock_prefs.dart';
 import 'package:timepod/widgets/option_switch.dart';
+import 'package:timepod/widgets/place_tile.dart';
 
-/// A switch for each display choice, saved on this device as it changes.
+/// A switch for each display choice, and on a desktop where the desktop
+/// clock opens, saved on this device as they change.
 
 class DisplayScreen extends StatelessWidget {
   const DisplayScreen({super.key});
@@ -47,6 +49,7 @@ class DisplayScreen extends StatelessWidget {
         children: [
           for (final option in ClockOption.values)
             if (isDesktop || !option.desktopOnly) OptionSwitch(option: option),
+          if (isDesktop) const PlaceTile(),
         ],
       ),
     );

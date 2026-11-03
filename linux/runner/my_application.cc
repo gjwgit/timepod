@@ -173,6 +173,13 @@ MyApplication* my_application_new() {
   // the application to be recognized beyond its binary name.
   g_set_prgname(APPLICATION_ID);
 
+  // 20261103 gjw Run under X11, through XWayland on a Wayland desktop, as
+  // conky does. GNOME on Wayland ignores an app placing its own window or
+  // keeping it below the others, which the desktop clock needs, but honours
+  // both for an X11 window. Without X11 GTK falls back to Wayland.
+
+  gdk_set_allowed_backends("x11,*");
+
   return MY_APPLICATION(g_object_new(my_application_get_type(),
                                      "application-id", APPLICATION_ID, "flags",
                                      G_APPLICATION_NON_UNIQUE, nullptr));

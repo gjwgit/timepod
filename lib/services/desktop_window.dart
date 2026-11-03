@@ -27,8 +27,11 @@ library;
 
 import 'package:flutter/material.dart';
 
+import 'package:screen_retriever/screen_retriever.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
+
+import 'package:timepod/models/clock_place.dart';
 
 /// Turns the window into the desktop clock and back, remembering on this
 /// device where each was left.
@@ -48,14 +51,23 @@ class DesktopWindow {
 
   static const _firstSize = Size(360, 360);
 
+  /// The gap left between a clock in a corner and the edge of the screen.
+
+  static const _margin = 16.0;
+
   /// Whether the app was closed as the desktop clock.
 
   static Future<bool> wasOn() async =>
       (await SharedPreferences.getInstance()).getBool(_onKey) ?? false;
 
-  /// Make the window the desktop clock, [transparent] or on black.
+  /// Make the window the desktop clock, [transparent] or on black, at
+  /// [place], and the [appSize] or else the size it was last left at.
 
-  static Future<void> enter({required bool transparent}) async {
+  static Future<void> enter({
+    required bool transparent,
+    required bool appSize,
+    required ClockPlace place,
+  }) async {
     final prefs = await SharedPreferences.getInstance();
 
     // Keep the app's bounds, unless the app opened as the desktop clock,
@@ -73,10 +85,34 @@ class DesktopWindow {
     );
     await windowManager.setAlwaysOnBottom(true);
 
-    final bounds = _get(prefs, _clockKey);
-    await (bounds == null
-        ? windowManager.setSize(_firstSize)
-        : windowManager.setBounds(bounds));
+    final app = _get(prefs, _appKey);
+    final left = _get(prefs, _clockKey);
+    final size = appSize && app != null ? app.size : left?.size ?? _firstSize;
+
+    if (place.alignment case final alignment?) {
+      final screen = await _screen(app ?? await windowManager.getBounds());
+      await windowManager.setBounds(
+        alignment.inscribe(size, screen.deflate(_margin)),
+      );
+    } else if (left != null) {
+      await windowManager.setBounds(left.topLeft & size);
+    } else {
+      await windowManager.setSize(size);
+    }
+  }
+
+  // The part of the screen the app is on that windows may use, less any
+  // panel or dock, or of the main screen when the app's is not known.
+
+  static Future<Rect> _screen(Rect app) async {
+    Rect usable(Display d) =>
+        (d.visiblePosition ?? Offset.zero) & (d.visibleSize ?? d.size);
+
+    for (final display in await screenRetriever.getAllDisplays()) {
+      if (usable(display).contains(app.center)) return usable(display);
+    }
+
+    return usable(await screenRetriever.getPrimaryDisplay());
   }
 
   /// Remember where the desktop clock is and its size.

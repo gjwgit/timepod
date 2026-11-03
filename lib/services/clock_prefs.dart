@@ -30,13 +30,20 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:timepod/models/clock_option.dart';
+import 'package:timepod/models/clock_place.dart';
 
 /// The display choices, saved to SharedPreferences as they change. They are
 /// device preferences, never synced to the Pod: a clock on the bedside tablet
 /// and one on the desk monitor are set up differently.
 
 class ClockPrefs extends ChangeNotifier {
+  static const _placeKey = 'timepod_desktopClockPlace';
+
   final _values = {for (final option in ClockOption.values) option: true};
+
+  /// Where the desktop clock opens.
+
+  ClockPlace place = ClockPlace.left;
 
   /// Whether [option] is on.
 
@@ -50,6 +57,9 @@ class ClockPrefs extends ChangeNotifier {
     for (final option in ClockOption.values) {
       _values[option] = prefs.getBool(option.key) ?? true;
     }
+    place =
+        ClockPlace.values.asNameMap()[prefs.getString(_placeKey)] ??
+        ClockPlace.left;
 
     notifyListeners();
   }
@@ -62,6 +72,16 @@ class ClockPrefs extends ChangeNotifier {
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(option.key, value);
+  }
+
+  /// Open the desktop clock at [value], saving the choice.
+
+  Future<void> setPlace(ClockPlace value) async {
+    place = value;
+    notifyListeners();
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_placeKey, value.name);
   }
 
   /// Whether [option] is the only clock showing, which Display keeps on so

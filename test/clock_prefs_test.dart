@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:timepod/models/clock_option.dart';
+import 'package:timepod/models/clock_place.dart';
 import 'package:timepod/services/clock_prefs.dart';
 
 void main() {
@@ -28,6 +29,18 @@ void main() {
 
     expect(prefs[ClockOption.seconds], isFalse);
     expect(prefs[ClockOption.date], isTrue);
+  });
+
+  test('the desktop clock opens where it was left until placed', () async {
+    final first = ClockPrefs();
+    await first.load();
+    expect(first.place, ClockPlace.left);
+
+    await first.setPlace(ClockPlace.topRight);
+
+    final prefs = ClockPrefs();
+    await prefs.load();
+    expect(prefs.place, ClockPlace.topRight);
   });
 
   test('a change notifies listeners', () async {

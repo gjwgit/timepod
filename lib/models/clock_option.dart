@@ -44,6 +44,12 @@ enum ClockOption {
     'Show the desktop through the desktop clock rather than a black '
         'background.',
     desktopOnly: true,
+  ),
+  appSize(
+    'Desktop clock the size of the app',
+    'Open the desktop clock the size of the app window, rather than the size '
+        'it was last left at.',
+    desktopOnly: true,
   );
 
   const ClockOption(this.title, this.description, {this.desktopOnly = false});

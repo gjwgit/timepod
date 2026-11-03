@@ -70,7 +70,11 @@ class _DesktopClockState extends State<DesktopClock> with WindowListener {
   void initState() {
     super.initState();
     windowManager.addListener(this);
-    DesktopWindow.enter(transparent: clockPrefs[ClockOption.transparent]);
+    DesktopWindow.enter(
+      transparent: clockPrefs[ClockOption.transparent],
+      appSize: clockPrefs[ClockOption.appSize],
+      place: clockPrefs.place,
+    );
   }
 
   @override

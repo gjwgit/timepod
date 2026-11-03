@@ -90,6 +90,12 @@ TimePod app including the top toolbar and the bottom app buttons.
 
 The desktop transparent mode allows the time to sit by itself on the desktop.
 
+Under **Display** choose whether the desktop clock opens the size of
+the app window, and where on the screen it opens: where it was last
+left, a corner or the centre. On a Wayland desktop TimePod runs through
+XWayland, as conky does, since GNOME on Wayland will not let an app
+place its own window.
+
 ## Roadmap
 
 TimePod is built using the [SolidUI](https://solidcommunity.au)

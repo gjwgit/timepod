@@ -23,6 +23,7 @@ Williams](https://togaware.com/Graham.Williams.html).
 
 ## 0.2 A Desktop Clock
 
++ Desktop clock app sized, in a corner, on Wayland too [0.2.2 20261103 gjw]
 + Android icon fills the launcher icon, not a white plate [0.2.1 20261102 gjw]
 + Desktop clock, optionally transparent, on the desktop [0.2.0 20261102 gjw]
 
