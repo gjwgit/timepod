@@ -78,7 +78,8 @@ The app can sit inconspicuously in a small window on your computer's
 desktop. Dark mode and light mode are supported. Tap the full screen
 icon in the top toolbar to display the clock over the whole screen,
 while turning off the screen sleep mode. Tap the `ESC` key or click in
-the window to restore to the original window.
+the window to restore to the original window. Outside fullscreen, in
+the app window or the desktop clock, the screen sleeps as usual.
 
 On a technical note we see here the standard
 [solidui](https://pub.dev/packages/solidui) scaffold that houses the
