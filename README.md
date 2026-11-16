@@ -1,4 +1,6 @@
-# TimePod - Privacy-First Fullscreen Clock
+# TimePod
+
+> Privacy-First Fullscreen Clock
 
 [![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
@@ -109,11 +111,9 @@ eventually whre calendar events can be securely and privately stored
 and shared, if you choose, with other TimePod users. Some of the
 functionality below will depend on supporting Solid Pods.
 
-+ Dim the display overnight
-
 + Configurable font and colour.
 
-+ Add an alarm
++ Add an alarm.
 
 + Add a calendar function to record event dates and times. A popup
   will appear at that date/time with the correspending event
@@ -125,3 +125,7 @@ functionality below will depend on supporting Solid Pods.
 + Access RoloPod data within the user's Pod to catch birthdays,
   wedding anniversaries, etc, and then popup a reminder in TimePod the
   day before.
+
++ As we add support for Solid Pods data can be optionally shared
+  across devices and other users of your choosing using secure and
+  private personal data stores on Solid Pods.
