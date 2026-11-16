@@ -113,7 +113,7 @@ functionality below will depend on supporting Solid Pods.
 
 + Configurable font and colour.
 
-+ Add an alarm.
++ Add support for alarms, world clock, timers, and a stopwatch.
 
 + Add a calendar function to record event dates and times. A popup
   will appear at that date/time with the correspending event
