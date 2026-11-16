@@ -121,9 +121,10 @@ date. Tap Fullscreen to fill the screen with it and keep the screen awake, as
 a bedside or desk clock on a spare phone, tablet or monitor. On a desktop,
 Desktop Clock shows just the clock in a small window on the desktop.
 
-The app needs no login and sends nothing anywhere. Logging in to a Solid Pod
-is optional, ready for features that keep your data private and encrypted on
-your own Pod.
+The app needs no login and collects nothing about you. It fetches only its
+public change log, to show whether a newer version is out. Logging in to a
+Solid Pod is optional, ready for features that keep your data private and
+encrypted on your own Pod.
 
 TimePod is based on [Fullscreen
 Clock](https://github.com/schorschii/FsClock-Android) 2.2 by Georg Sieber,

@@ -17,9 +17,10 @@ minute so an OLED screen does not burn in. Under **Display** choose
 what the clock shows: the analog face, the digits, the date, the
 seconds, and 24 or 12 hour time.
 
-The app needs no login and sends nothing anywhere. Logging in to your
-own personal online data store (Pod) is optional, ready for features
-that keep your data private and encrypted on your own Pod. Pods are
+The app needs no login and collects nothing about you. It fetches only
+its public change log, to show whether a newer version is out. Logging
+in to your own personal online data store (Pod) is optional, ready for
+features that keep your data private and encrypted on your own Pod. Pods are
 an innovation from the inventor of the World Wide Web, Sir Tim
 Berners-Lee. For more information visit the [Solid
 Project](https://solidproject.org). **You do not need a Solid Pod to

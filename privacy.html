@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+
+  20261117 gjw The privacy policy TimePod's Play and App Store listing
+  points at.  Stores require a reachable privacy policy URL even from
+  an app that collects nothing.
+
+  The page is served by GitHub Pages from the repository root of the
+  dev branch, so this lives at
+  https://gjwgit.github.io/timepod/privacy.html
+
+  We use plain HTML rather than Markdown. Jekyll's handling of a root
+  .md without front matter can quietly serve the wrong content. This
+  file needs no build step to be correct.
+
+  THE CLAIMS HERE ARE THE SAME CLAIMS AS the README.md AND THE
+  ABOUT BOX in lib/home.dart.
+
+  -->
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TimePod Privacy Policy</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #5a5a5a;
+    --rule: #e2e2e2;
+    --accent: #6c391d;
+    --card: #faf7f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16130f;
+      --fg: #ece7e2;
+      --muted: #a9a29b;
+      --rule: #322c26;
+      --accent: #e0954f;
+      --card: #201b16;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16130f;
+    --fg: #ece7e2;
+    --muted: #a9a29b;
+    --rule: #322c26;
+    --accent: #e0954f;
+    --card: #201b16;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 16px 96px;
+    background: var(--bg);
+    color: var(--fg);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 42rem; margin: 0 auto; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .25rem; }
+  h2 {
+    font-size: 1.2rem; margin: 2.5rem 0 .6rem;
+    padding-top: 1.4rem; border-top: 1px solid var(--rule);
+  }
+  .date { color: var(--muted); margin: 0 0 2rem; font-size: .95rem; }
+  .lede {
+    background: var(--card); border-left: 3px solid var(--accent);
+    padding: 1rem 1.15rem; border-radius: 4px; margin: 0 0 1rem;
+  }
+  ul { padding-left: 1.2rem; }
+  li { margin: .5rem 0; }
+  code {
+    font: .875em/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: var(--card); padding: .1em .35em; border-radius: 3px;
+  }
+  a { color: var(--accent); }
+  footer {
+    margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--rule);
+    color: var(--muted); font-size: .9rem;
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>TimePod Privacy Policy</h1>
+  <p class="date">Effective 17 November 2026 · Togaware Pty Ltd</p>
+
+  <p class="lede">
+    <strong>TimePod does not collect your data.</strong> There is no
+    account to create, no analytics, no crash reporting, no
+    advertising and no tracking of any kind within the app. Nothing
+    about when or how you use the app is sent to Togaware or to anyone
+    else.
+  </p>
+
+  <h2>What TimePod stores</h2>
+  <p>
+    TimePod keeps only its display choices, and only on your device, in
+    the app's private storage:
+  </p>
+  <ul>
+    <li>
+      What the clock shows, chosen under <strong>Display</strong>: the
+      analog face, the digits, the date, the seconds, 24 or 12 hour
+      time, and how the desktop clock looks and where it opens.
+    </li>
+    <li>
+      On a desktop, the size and position of the app window and the
+      desktop clock, and whether the desktop clock was open, so the app
+      reopens as you left it.
+    </li>
+    <li>
+      The light or dark theme and the page you were last on.
+    </li>
+  </ul>
+  <p>
+    These are device preferences. They are never synced to a Pod or
+    sent anywhere, and uninstalling the app removes them.
+  </p>
+
+  <h2>Logging in to a Solid Pod</h2>
+  <p>
+    Logging in is optional and the clock works fully without it. If you
+    choose to log in, TimePod talks only to the Solid server you choose,
+    and the login is kept on your device so you stay logged in. At this
+    time TimePod reads and writes <strong>no data</strong> on your Pod.
+    Future features that store data there, such as calendar events, will
+    keep it encrypted on your own Pod, shared only if you choose, and
+    this policy will be updated before they arrive.
+  </p>
+
+  <h2>Checking for a new version</h2>
+  <p>
+    When it starts, TimePod fetches its public change log,
+    <a href="https://github.com/gjwgit/timepod/blob/dev/CHANGELOG.md"><code>CHANGELOG.md</code></a>,
+    from GitHub, to show its version and whether a newer one is out. It
+    is a plain download of a public file. TimePod sends nothing with it:
+    no identifier, no settings and nothing about you. GitHub sees a
+    request from your network, as it would from a web browser opening
+    the same page, and that is covered by GitHub's privacy policy, not
+    ours. This is the only connection TimePod makes on its own.
+  </p>
+
+  <h2>TimePod on the web</h2>
+  <p>
+    <a href="https://timepod.solidcommunity.au">TimePod Web</a> is the
+    same app served to your browser. The web server delivers the app's
+    files, and like any web server sees the requests for them. The app
+    itself behaves exactly as described above, keeping its choices in
+    your browser's storage for that site.
+  </p>
+
+  <h2>Children</h2>
+  <p>
+    TimePod is suitable for all ages and collects no personal information
+    from anyone, including children.
+  </p>
+
+  <h2>Changes to this policy</h2>
+  <p>
+    If this policy changes, the revised version will be published at this
+    address with a new effective date. TimePod is free software and its
+    full history is public, so any change to what the app does is visible
+    in the repository.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions, or a correction to this page, are welcome at
+    <a href="https://github.com/gjwgit/timepod/issues">the TimePod issue
+    tracker</a>, or by email to
+    <a href="mailto:privacy@togaware.com">privacy@togaware.com</a>.
+  </p>
+
+  <footer>
+    TimePod is free software, licensed under the
+    <a href="https://opensource.org/license/gpl-3-0">GNU General Public
+    License v3</a>. Source at
+    <a href="https://github.com/gjwgit/timepod">github.com/gjwgit/timepod</a>.
+  </footer>
+
+</main>
+</body>
+</html>
