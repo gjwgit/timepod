@@ -21,6 +21,10 @@ then please show some ❤️ and tap on the star at
 This app is authored by [Graham
 Williams](https://togaware.com/Graham.Williams.html).
 
+## 1.0 Release
+
++ Release to Google Play Store [1.0.0 20261117 gjw]
+
 ## 0.2 A Desktop Clock
 
 + Desktop clock app sized, in a corner, on Wayland too [0.2.2 20261103 gjw]
