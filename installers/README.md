@@ -97,8 +97,8 @@ Then set up your local installation (only required once):
 ln -s ${HOME}/.local/share/timepod/timepod ${HOME}/.local/bin/
 wget https://raw.githubusercontent.com/gjwgit/timepod/dev/installers/app.desktop -O ${HOME}/.local/share/applications/timepod.desktop
 sed -i "s/USER/$(whoami)/g" ${HOME}/.local/share/applications/timepod.desktop
-mkdir -p ${HOME}/.local/share/icons/hicolor/256x256/apps/
-wget https://github.com/gjwgit/timepod/raw/dev/installers/app.png -O ${HOME}/.local/share/icons/hicolor/256x256/apps/timepod.png
+mkdir -p ${HOME}/.local/share/icons/hicolor/512x512/apps/
+wget https://github.com/gjwgit/timepod/raw/dev/assets/images/app_icon_square.png -O ${HOME}/.local/share/icons/hicolor/512x512/apps/timepod.png
 ```
 
 To install for any user on the computer:
@@ -107,7 +107,7 @@ To install for any user on the computer:
 sudo unzip timepod-linux.zip -d /opt/timepod
 sudo ln -s /opt/timepod/timepod /usr/local/bin/
 wget https://raw.githubusercontent.com/gjwgit/timepod/dev/installers/app.desktop -O ${HOME}/usr/local/share/applications/timepod.desktop
-wget https://github.com/gjwgit/timepod/raw/dev/installers/app.png -O ${HOME}/use/local/share/icons/timepod.png
+wget https://github.com/gjwgit/timepod/raw/dev/assets/images/app_icon_square.png -O ${HOME}/use/local/share/icons/timepod.png
 ```
 
 Once installed you can run the app from the GNOME desktop through

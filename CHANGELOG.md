@@ -23,6 +23,7 @@ Williams](https://togaware.com/Graham.Williams.html).
 
 ## 1.0 Release
 
++ Setup for snap store [1.0.1 20261118 gjw]
 + Release to Google Play Store [1.0.0 20261117 gjw]
 
 ## 0.2 A Desktop Clock
