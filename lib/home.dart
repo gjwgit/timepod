@@ -35,9 +35,10 @@ import 'package:timepod/screens/clock_screen.dart';
 import 'package:timepod/screens/desktop_clock.dart';
 import 'package:timepod/screens/display_screen.dart';
 import 'package:timepod/screens/fullscreen_clock.dart';
+import 'package:timepod/screens/timers_screen.dart';
 import 'package:timepod/services/desktop_window.dart';
 
-/// The scaffold: the Clock and Display pages, Fullscreen and, on a desktop,
+/// The scaffold: the Clock, Timers and Display pages, Fullscreen and, on a desktop,
 /// Desktop Clock buttons in the app bar, and the login status for the
 /// optional Pod.
 
@@ -141,6 +142,15 @@ also free software under the GNU GPL version 3.
           icon: Icons.access_time,
           tooltip: '**Clock**\n\nThe time and date, updated every second.',
           child: ClockScreen(),
+        ),
+        SolidMenuItem(
+          title: 'Timers',
+          icon: Icons.hourglass_empty,
+          tooltip:
+              '**Timers**\n\nCount down from a time you type, as many '
+              'timers at once as you like, each ringing as it runs out. '
+              'They keep running on through a restart of the app.',
+          child: TimersScreen(),
         ),
         SolidMenuItem(
           title: 'Display',

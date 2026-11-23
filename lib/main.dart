@@ -33,6 +33,7 @@ import 'package:window_manager/window_manager.dart';
 import 'package:timepod/app.dart';
 import 'package:timepod/constants/app.dart';
 import 'package:timepod/services/clock_prefs.dart';
+import 'package:timepod/services/timer_store.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +43,11 @@ void main() async {
   // clock opens as it was left rather than redrawing a moment later.
 
   await clockPrefs.load();
+
+  // 20261124 gjw Read the timers too, so any left running carry on, and
+  // ring, whichever page the app opens on.
+
+  await timerStore.load();
 
   // 20260913 gjw Open at the size the window was last left at, and keep that
   // size up to date as it is resized. The user sets the size, and turns off

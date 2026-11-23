@@ -21,6 +21,10 @@ then please show some ❤️ and tap on the star at
 This app is authored by [Graham
 Williams](https://togaware.com/Graham.Williams.html).
 
+## 1.1 Timers
+
++ Grid of countdown timers, as on a phone's clock [1.1.0 20261124 gjw]
+
 ## 1.0 Release
 
 + Setup for snap store [1.0.1 20261118 gjw]

@@ -17,7 +17,9 @@ awake. Leave it running on a spare phone, tablet or monitor as a
 bedside or desk clock. The fullscreen clock drifts a little every
 minute so an OLED screen does not burn in. Under **Display** choose
 what the clock shows: the analog face, the digits, the date, the
-seconds, and 24 or 12 hour time.
+seconds, and 24 or 12 hour time. Under **Timers** run as many
+countdown timers as you like, side by side in a grid, each ringing as
+it runs out.
 
 The app needs no login and collects nothing about you. It fetches only
 its public change log, to show whether a newer version is out. Logging
