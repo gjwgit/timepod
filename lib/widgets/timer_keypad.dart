@@ -25,9 +25,8 @@
 
 library;
 
-import 'package:flutter/material.dart';
-
 import 'package:markdown_tooltip/markdown_tooltip.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Digits 1 to 9, then 00, 0 and a delete key, in round buttons.
 

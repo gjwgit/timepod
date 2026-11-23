@@ -27,9 +27,8 @@ library;
 
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
 import 'package:markdown_tooltip/markdown_tooltip.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'package:timepod/services/timer_store.dart';
 import 'package:timepod/widgets/timer_card.dart';

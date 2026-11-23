@@ -27,7 +27,7 @@ library;
 
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Builds [builder] with the time now, and again as each second turns over.
 

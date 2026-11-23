@@ -25,8 +25,7 @@
 
 library;
 
-import 'package:flutter/material.dart';
-
+import 'package:material_ui/material_ui.dart';
 import 'package:solidpod/solidpod.dart' show getWebId;
 import 'package:solidui/solidui.dart';
 

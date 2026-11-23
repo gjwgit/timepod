@@ -25,9 +25,9 @@
 
 library;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:material_ui/material_ui.dart';
 import 'package:solidui/solidui.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:window_manager/window_manager.dart';

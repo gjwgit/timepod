@@ -25,9 +25,8 @@
 
 library;
 
-import 'package:flutter/material.dart';
-
 import 'package:markdown_tooltip/markdown_tooltip.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'package:timepod/utils/timer_format.dart';
 import 'package:timepod/widgets/timer_keypad.dart';

@@ -25,7 +25,7 @@
 
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Shows [text] as large as the space allows.
 ///

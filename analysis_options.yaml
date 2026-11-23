@@ -10,13 +10,6 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  # 20261124 gjw Flutter 3.47 deprecates package:flutter/material.dart in
-  # favour of package:material_ui, flagging every file, and the pre-push
-  # hook refuses any analyzer issue. solidui still takes Flutter's own
-  # ThemeData, so the move waits for the suite. Remove this then.
-
-  errors:
-    deprecated_member_use: ignore
   exclude:
     - build/**
     - android/**

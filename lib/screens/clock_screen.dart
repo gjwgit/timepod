@@ -25,7 +25,7 @@
 
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'package:timepod/services/clock_prefs.dart';
 import 'package:timepod/widgets/clock_face.dart';

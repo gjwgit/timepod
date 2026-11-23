@@ -25,7 +25,7 @@
 
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Asks for a label, starting from [label]. Pops with the label typed, or
 /// with nothing on Cancel.
