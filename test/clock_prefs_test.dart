@@ -5,6 +5,7 @@ library;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:timepod/models/alarm_sound.dart';
 import 'package:timepod/models/clock_option.dart';
 import 'package:timepod/models/clock_place.dart';
 import 'package:timepod/services/clock_prefs.dart';
@@ -64,5 +65,17 @@ void main() {
     expect(prefs.isLastFace(ClockOption.analog), isTrue);
     expect(prefs.isLastFace(ClockOption.digital), isFalse);
     expect(prefs.isLastFace(ClockOption.date), isFalse);
+  });
+
+  test('timers ring with the guitar until another sound is chosen', () async {
+    final first = ClockPrefs();
+    await first.load();
+    expect(first.alarm, AlarmSound.guitar);
+
+    await first.setAlarm(AlarmSound.beeps);
+
+    final prefs = ClockPrefs();
+    await prefs.load();
+    expect(prefs.alarm, AlarmSound.beeps);
   });
 }

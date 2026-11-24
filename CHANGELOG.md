@@ -23,6 +23,8 @@ Williams](https://togaware.com/Graham.Williams.html).
 
 ## 1.1 Timers
 
++ Alarm sound in Settings: guitar, classical or beeps [1.1.3 20261124 gjw]
++ Keep the screen awake while a timer runs [1.1.2 20261124 gjw]
 + Migrate to material_ui with solidui 2.0 [1.1.1 20261124 gjw]
 + Grid of countdown timers, as on a phone's clock [1.1.0 20261124 gjw]
 

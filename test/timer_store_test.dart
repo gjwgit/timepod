@@ -5,10 +5,14 @@ library;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:timepod/services/screen_awake.dart';
 import 'package:timepod/services/timer_store.dart';
 
 void main() {
-  setUp(() => SharedPreferences.setMockInitialValues({}));
+  setUp(() {
+    SharedPreferences.setMockInitialValues({});
+    screenAwake.toggle = ({required enable}) async {};
+  });
 
   test('an added timer starts, and is saved and read back', () async {
     final store = TimerStore();
@@ -46,5 +50,24 @@ void main() {
 
     store.remove(timer);
     expect(store.timers, isEmpty);
+  });
+
+  test('the screen stays awake only while a timer runs', () async {
+    final store = TimerStore();
+    await store.load();
+    expect(screenAwake.isOn, isFalse);
+
+    store.add(const Duration(minutes: 1));
+    expect(screenAwake.isOn, isTrue);
+
+    final timer = store.timers.single;
+    store.toggle(timer);
+    expect(screenAwake.isOn, isFalse);
+
+    store.toggle(timer);
+    expect(screenAwake.isOn, isTrue);
+
+    store.remove(timer);
+    expect(screenAwake.isOn, isFalse);
   });
 }

@@ -40,7 +40,7 @@ enum ClockPlace {
 
   const ClockPlace(this.label, [this.alignment]);
 
-  /// The name of the place in Display.
+  /// The name of the place in Settings.
 
   final String label;
 

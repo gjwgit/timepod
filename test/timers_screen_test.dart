@@ -7,12 +7,14 @@ import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:timepod/screens/timers_screen.dart';
+import 'package:timepod/services/screen_awake.dart';
 import 'package:timepod/services/timer_store.dart';
 import 'package:timepod/widgets/timer_card.dart';
 
 void main() {
   setUp(() async {
     SharedPreferences.setMockInitialValues({});
+    screenAwake.toggle = ({required enable}) async {};
     await timerStore.load();
   });
 

@@ -32,12 +32,12 @@ import 'package:solidui/solidui.dart';
 import 'package:timepod/constants/app.dart';
 import 'package:timepod/screens/clock_screen.dart';
 import 'package:timepod/screens/desktop_clock.dart';
-import 'package:timepod/screens/display_screen.dart';
 import 'package:timepod/screens/fullscreen_clock.dart';
+import 'package:timepod/screens/settings_screen.dart';
 import 'package:timepod/screens/timers_screen.dart';
 import 'package:timepod/services/desktop_window.dart';
 
-/// The scaffold: the Clock, Timers and Display pages, Fullscreen and, on a desktop,
+/// The scaffold: the Clock, Timers and Settings pages, Fullscreen and, on a desktop,
 /// Desktop Clock buttons in the app bar, and the login status for the
 /// optional Pod.
 
@@ -92,7 +92,7 @@ class _HomeState extends State<Home> {
                   '**Desktop Clock**\n\nShow just the clock in a small window '
                   'with no frame, sitting on the desktop. Drag it to move it '
                   'and drag its edges to resize it. Double-click it, '
-                  'right-click it, or press Escape, to come back. Display '
+                  'right-click it, or press Escape, to come back. Settings '
                   'chooses whether the desktop shows through it.',
               onPressed: () => DesktopClock.open(context),
             ),
@@ -152,12 +152,12 @@ also free software under the GNU GPL version 3.
           child: TimersScreen(),
         ),
         SolidMenuItem(
-          title: 'Display',
-          icon: Icons.tune,
+          title: 'Settings',
+          icon: Icons.settings_outlined,
           tooltip:
-              '**Display**\n\nChoose what the clock shows. The choices are '
-              'kept on this device.',
-          child: DisplayScreen(),
+              '**Settings**\n\nChoose what the clock shows and the sound a '
+              'timer rings with. The choices are kept on this device.',
+          child: SettingsScreen(),
         ),
       ],
     );

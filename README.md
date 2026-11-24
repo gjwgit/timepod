@@ -15,11 +15,13 @@ analog, digital or both, with the weekday and date. Tap
 **Fullscreen** to fill the screen with the clock and keep the screen
 awake. Leave it running on a spare phone, tablet or monitor as a
 bedside or desk clock. The fullscreen clock drifts a little every
-minute so an OLED screen does not burn in. Under **Display** choose
+minute so an OLED screen does not burn in. Under **Settings** choose
 what the clock shows: the analog face, the digits, the date, the
 seconds, and 24 or 12 hour time. Under **Timers** run as many
 countdown timers as you like, side by side in a grid, each ringing as
-it runs out.
+it runs out with a gentle fingerpicked guitar or a classical guitar
+piece, each swelling over 15 seconds, or with beeps, as chosen under
+**Settings**. The screen stays awake while a timer runs.
 
 The app needs no login and collects nothing about you. It fetches only
 its public change log, to show whether a newer version is out. Logging
@@ -96,7 +98,7 @@ TimePod app including the top toolbar and the bottom app buttons.
 
 The desktop transparent mode allows the time to sit by itself on the desktop.
 
-Under **Display** choose whether the desktop clock opens the size of
+Under **Settings** choose whether the desktop clock opens the size of
 the app window, and where on the screen it opens: where it was last
 left, a corner or the centre. On a Wayland desktop TimePod runs through
 XWayland, as conky does, since GNOME on Wayland will not let an app

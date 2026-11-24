@@ -29,21 +29,27 @@ import 'package:flutter/foundation.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:timepod/models/alarm_sound.dart';
 import 'package:timepod/models/clock_option.dart';
 import 'package:timepod/models/clock_place.dart';
 
-/// The display choices, saved to SharedPreferences as they change. They are
-/// device preferences, never synced to the Pod: a clock on the bedside tablet
+/// The choices under Settings, saved to SharedPreferences as they change.
+/// They are device preferences, never synced to the Pod: a clock on the bedside tablet
 /// and one on the desk monitor are set up differently.
 
 class ClockPrefs extends ChangeNotifier {
   static const _placeKey = 'timepod_desktopClockPlace';
+  static const _alarmKey = 'timepod_alarmSound';
 
   final _values = {for (final option in ClockOption.values) option: true};
 
   /// Where the desktop clock opens.
 
   ClockPlace place = ClockPlace.left;
+
+  /// The sound a timer rings with.
+
+  AlarmSound alarm = AlarmSound.guitar;
 
   /// Whether [option] is on.
 
@@ -60,6 +66,9 @@ class ClockPrefs extends ChangeNotifier {
     place =
         ClockPlace.values.asNameMap()[prefs.getString(_placeKey)] ??
         ClockPlace.left;
+    alarm =
+        AlarmSound.values.asNameMap()[prefs.getString(_alarmKey)] ??
+        AlarmSound.guitar;
 
     notifyListeners();
   }
@@ -84,7 +93,17 @@ class ClockPrefs extends ChangeNotifier {
     await prefs.setString(_placeKey, value.name);
   }
 
-  /// Whether [option] is the only clock showing, which Display keeps on so
+  /// Ring timers with [value], saving the choice.
+
+  Future<void> setAlarm(AlarmSound value) async {
+    alarm = value;
+    notifyListeners();
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_alarmKey, value.name);
+  }
+
+  /// Whether [option] is the only clock showing, which Settings keeps on so
   /// the screen is never left without a clock.
 
   bool isLastFace(ClockOption option) => switch (option) {
@@ -94,6 +113,6 @@ class ClockPrefs extends ChangeNotifier {
   };
 }
 
-/// The app's one set of display choices.
+/// The app's one set of choices.
 
 final clockPrefs = ClockPrefs();

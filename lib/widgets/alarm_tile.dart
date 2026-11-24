@@ -1,4 +1,4 @@
-/// The Display page, the clock's display choices.
+/// The choice of the sound a timer rings with.
 //
 // Time-stamp: <>
 //
@@ -26,30 +26,34 @@
 library;
 
 import 'package:material_ui/material_ui.dart';
-import 'package:solidui/solidui.dart' show isDesktop;
 
-import 'package:timepod/models/clock_option.dart';
+import 'package:timepod/models/alarm_sound.dart';
 import 'package:timepod/services/clock_prefs.dart';
-import 'package:timepod/widgets/option_switch.dart';
-import 'package:timepod/widgets/place_tile.dart';
 
-/// A switch for each display choice, and on a desktop where the desktop
-/// clock opens, saved on this device as they change.
+/// A menu of the alarm sounds, with what the chosen one is like beneath.
 
-class DisplayScreen extends StatelessWidget {
-  const DisplayScreen({super.key});
+class AlarmTile extends StatelessWidget {
+  const AlarmTile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // 20261124 gjw Listen here, not only in the page around it: the page
+    // builds this tile as a constant, so its rebuild alone would leave the
+    // menu showing the old choice.
+
     return ListenableBuilder(
       listenable: clockPrefs,
-      builder: (context, _) => ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          for (final option in ClockOption.values)
-            if (isDesktop || !option.desktopOnly) OptionSwitch(option: option),
-          if (isDesktop) const PlaceTile(),
-        ],
+      builder: (context, _) => ListTile(
+        title: const Text('Alarm sound'),
+        subtitle: Text(clockPrefs.alarm.description),
+        trailing: DropdownButton<AlarmSound>(
+          value: clockPrefs.alarm,
+          onChanged: (sound) => clockPrefs.setAlarm(sound!),
+          items: [
+            for (final sound in AlarmSound.values)
+              DropdownMenuItem(value: sound, child: Text(sound.label)),
+          ],
+        ),
       ),
     );
   }

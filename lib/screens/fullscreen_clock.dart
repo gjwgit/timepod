@@ -29,12 +29,12 @@ import 'package:flutter/services.dart';
 
 import 'package:material_ui/material_ui.dart';
 import 'package:solidui/solidui.dart';
-import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'package:timepod/constants/app.dart';
 import 'package:timepod/models/clock_option.dart';
 import 'package:timepod/services/clock_prefs.dart';
+import 'package:timepod/services/screen_awake.dart';
 import 'package:timepod/utils/burn_in_offset.dart';
 import 'package:timepod/widgets/clock_face.dart';
 import 'package:timepod/widgets/clock_ticker.dart';
@@ -72,7 +72,7 @@ class _FullscreenClockState extends State<FullscreenClock> {
   // window goes fullscreen, on a phone the system bars hide.
 
   void _fill(bool on) {
-    WakelockPlus.toggle(enable: on);
+    screenAwake.keep('fullscreen', on);
     SystemChrome.setEnabledSystemUIMode(
       on ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge,
     );

@@ -34,6 +34,8 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:timepod/models/timer_entry.dart';
+import 'package:timepod/services/screen_awake.dart';
+import 'package:timepod/services/timer_alarm.dart';
 
 /// The list of timers, saved to SharedPreferences on every change. Like the
 /// display choices they belong to this device, never synced to the Pod: a
@@ -128,12 +130,16 @@ class TimerStore extends ChangeNotifier {
   }
 
   // 20261124 gjw Run the ticker only while a timer runs, so an idle Timers
-  // page costs nothing.
+  // page costs nothing. Keep the screen awake while a timer runs or rings,
+  // so its count is there to glance at, letting it sleep once every timer
+  // is paused, stopped or deleted.
 
   void _changed({bool save = true}) {
     if (save) unawaited(_save());
 
     final running = _timers.any((timer) => timer.isRunning);
+    screenAwake.keep('timers', running);
+    _ring(DateTime.now());
     if (running && _ticker == null) {
       _ticker = Timer.periodic(_tick, (_) => _onTick());
     } else if (!running) {
@@ -144,18 +150,25 @@ class TimerStore extends ChangeNotifier {
     notifyListeners();
   }
 
-  // 20261124 gjw Ring with the platform's alert sound and a buzz once a
-  // second while any timer has run out, until it is stopped or reset.
+  // 20261124 gjw Buzz once a second while any timer has run out, the
+  // alarm looping meanwhile, until it is stopped, reset or deleted.
 
   void _onTick() {
     final now = DateTime.now();
 
-    if (++_ticks % 4 == 0 && _timers.any((timer) => timer.isExpired(now))) {
-      SystemSound.play(SystemSoundType.alert);
-      HapticFeedback.heavyImpact();
-    }
+    if (_ring(now) && ++_ticks % 4 == 0) HapticFeedback.heavyImpact();
 
     notifyListeners();
+  }
+
+  // 20261124 gjw Sound the alarm while any timer has run out, and silence
+  // it as soon as none has. SystemSound.alert, used before, is silent on
+  // Android.
+
+  bool _ring(DateTime now) {
+    final ringing = _timers.any((timer) => timer.isExpired(now));
+    unawaited(timerAlarm.ring(ringing));
+    return ringing;
   }
 
   Future<void> _save() async {

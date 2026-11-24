@@ -1,4 +1,4 @@
-/// The display choices for the clock, each a switch under Display.
+/// The display choices for the clock, each a switch under Settings.
 //
 // Time-stamp: <>
 //
@@ -62,8 +62,8 @@ enum ClockOption {
 
   final String description;
 
-  /// Whether the option only applies on a desktop, so Display shows it only
-  /// there.
+  /// Whether the option only applies on a desktop, so Settings shows it
+  /// only there.
 
   final bool desktopOnly;
 

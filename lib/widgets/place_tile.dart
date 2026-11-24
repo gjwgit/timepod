@@ -37,16 +37,23 @@ class PlaceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: const Text('Desktop clock place'),
-      subtitle: const Text('Where on the screen the desktop clock opens.'),
-      trailing: DropdownButton<ClockPlace>(
-        value: clockPrefs.place,
-        onChanged: (place) => clockPrefs.setPlace(place!),
-        items: [
-          for (final place in ClockPlace.values)
-            DropdownMenuItem(value: place, child: Text(place.label)),
-        ],
+    // 20261124 gjw Listen here, not only in the page around it: the page
+    // builds this tile as a constant, so its rebuild alone would leave the
+    // menu showing the old choice.
+
+    return ListenableBuilder(
+      listenable: clockPrefs,
+      builder: (context, _) => ListTile(
+        title: const Text('Desktop clock place'),
+        subtitle: const Text('Where on the screen the desktop clock opens.'),
+        trailing: DropdownButton<ClockPlace>(
+          value: clockPrefs.place,
+          onChanged: (place) => clockPrefs.setPlace(place!),
+          items: [
+            for (final place in ClockPlace.values)
+              DropdownMenuItem(value: place, child: Text(place.label)),
+          ],
+        ),
       ),
     );
   }

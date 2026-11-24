@@ -7,7 +7,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:timepod/models/clock_option.dart';
-import 'package:timepod/screens/display_screen.dart';
+import 'package:timepod/screens/settings_screen.dart';
 import 'package:timepod/services/clock_prefs.dart';
 
 void main() {
@@ -16,9 +16,18 @@ void main() {
     await clockPrefs.load();
   });
 
-  Future<void> pump(WidgetTester tester) => tester.pumpWidget(
-    const MaterialApp(home: Scaffold(body: DisplayScreen())),
-  );
+  // A window tall enough for every setting, since the list builds only the
+  // rows on screen.
+
+  Future<void> pump(WidgetTester tester) {
+    tester.view.physicalSize = const Size(800, 1600);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+
+    return tester.pumpWidget(
+      const MaterialApp(home: Scaffold(body: SettingsScreen())),
+    );
+  }
 
   SwitchListTile tile(WidgetTester tester, ClockOption option) =>
       tester.widget<SwitchListTile>(
