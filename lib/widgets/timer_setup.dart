@@ -36,11 +36,15 @@ import 'package:timepod/widgets/timer_keypad.dart';
 /// phone's clock, so typing 1 3 0 sets one minute thirty.
 
 class TimerSetup extends StatefulWidget {
-  const TimerSetup({super.key, required this.onStart});
+  const TimerSetup({super.key, required this.onStart, this.actions = const []});
 
   /// Called with the length typed when Start is tapped.
 
   final ValueChanged<Duration> onStart;
+
+  /// Buttons for the app bar, before Start.
+
+  final List<Widget> actions;
 
   @override
   State<TimerSetup> createState() => _TimerSetupState();
@@ -84,6 +88,7 @@ class _TimerSetupState extends State<TimerSetup> {
       appBar: AppBar(
         title: const Text('Add Timer'),
         actions: [
+          ...widget.actions,
           MarkdownTooltip(
             message: '''
 

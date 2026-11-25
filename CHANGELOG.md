@@ -23,6 +23,7 @@ Williams](https://togaware.com/Graham.Williams.html).
 
 ## 1.1 Timers
 
++ Timers kept on the Pod, countdowns shared by choice [1.1.4 20261126 gjw]
 + Alarm sound in Settings: guitar, classical or beeps [1.1.3 20261124 gjw]
 + Keep the screen awake while a timer runs [1.1.2 20261124 gjw]
 + Migrate to material_ui with solidui 2.0 [1.1.1 20261124 gjw]

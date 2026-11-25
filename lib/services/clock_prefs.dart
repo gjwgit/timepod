@@ -40,6 +40,7 @@ import 'package:timepod/models/clock_place.dart';
 class ClockPrefs extends ChangeNotifier {
   static const _placeKey = 'timepod_desktopClockPlace';
   static const _alarmKey = 'timepod_alarmSound';
+  static const _syncKey = 'timepod_shareCountdowns';
 
   final _values = {for (final option in ClockOption.values) option: true};
 
@@ -50,6 +51,18 @@ class ClockPrefs extends ChangeNotifier {
   /// The sound a timer rings with.
 
   AlarmSound alarm = AlarmSound.guitar;
+
+  // 20261125 gjw A device can keep its countdowns to itself, a kitchen
+  // timer ringing only in the kitchen, while other devices share theirs.
+  //
+  // 20261126 gjw Sharing is opt in, off until turned on. The timers
+  // themselves, their lengths and names, are the same on every device
+  // whether or not their countdowns are shared.
+
+  /// Whether this device shares its running countdowns with the others
+  /// through the Pod.
+
+  bool shareCountdowns = false;
 
   /// Whether [option] is on.
 
@@ -69,6 +82,7 @@ class ClockPrefs extends ChangeNotifier {
     alarm =
         AlarmSound.values.asNameMap()[prefs.getString(_alarmKey)] ??
         AlarmSound.guitar;
+    shareCountdowns = prefs.getBool(_syncKey) ?? false;
 
     notifyListeners();
   }
@@ -101,6 +115,17 @@ class ClockPrefs extends ChangeNotifier {
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_alarmKey, value.name);
+  }
+
+  /// Share countdowns through the Pod, or not, as [value] says, saving the
+  /// choice.
+
+  Future<void> setShareCountdowns(bool value) async {
+    shareCountdowns = value;
+    notifyListeners();
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_syncKey, value);
   }
 
   /// Whether [option] is the only clock showing, which Settings keeps on so

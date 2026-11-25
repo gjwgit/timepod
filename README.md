@@ -25,12 +25,16 @@ piece, each swelling over 15 seconds, or with beeps, as chosen under
 
 The app needs no login and collects nothing about you. It fetches only
 its public change log, to show whether a newer version is out. Logging
-in to your own personal online data store (Pod) is optional, ready for
-features that keep your data private and encrypted on your own Pod. Pods are
+in to your own personal online data store (Pod) is optional. Once
+logged in, your timers are kept private and encrypted on your own Pod,
+so every device you log in from has the same timers. A timer counts
+down only on the device where it is started, unless you tap the cloud on
+the Timers page to share countdowns, when a timer started on one device
+runs on them all. Pods are
 an innovation from the inventor of the World Wide Web, Sir Tim
 Berners-Lee. For more information visit the [Solid
-Project](https://solidproject.org). **You do not need a Solid Pod to
-use this app.**
+Project](https://solidproject.org). **You do not need a Solid Pod to use
+this app.**
 
 TimePod is based on [Fullscreen
 Clock](https://github.com/schorschii/FsClock-Android) 2.2 by Georg

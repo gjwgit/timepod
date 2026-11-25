@@ -36,6 +36,7 @@ import 'package:timepod/screens/fullscreen_clock.dart';
 import 'package:timepod/screens/settings_screen.dart';
 import 'package:timepod/screens/timers_screen.dart';
 import 'package:timepod/services/desktop_window.dart';
+import 'package:timepod/services/pod_connect.dart';
 
 /// The scaffold: the Clock, Timers and Settings pages, Fullscreen and, on a desktop,
 /// Desktop Clock buttons in the app bar, and the login status for the
@@ -69,7 +70,12 @@ class _HomeState extends State<Home> {
 
   Future<void> _loadWebId() async {
     final webId = await getWebId();
-    if (mounted) setState(() => _webId = webId);
+    if (!mounted) return;
+    setState(() => _webId = webId);
+
+    // 20261125 gjw Keep the timers on the Pod once logged in to one.
+
+    await connectPod(context, widget, webId);
   }
 
   @override
@@ -123,8 +129,10 @@ Desktop Clock shows just the clock in a small window on the desktop.
 
 The app needs no login and collects nothing about you. It fetches only its
 public change log, to show whether a newer version is out. Logging in to a
-Solid Pod is optional, ready for features that keep your data private and
-encrypted on your own Pod.
+Solid Pod is optional. Once logged in, your timers are kept encrypted on your
+own Pod, so every device you log in from has the same ones. The cloud on the
+Timers page also shares their countdowns, so a timer started on one device
+runs on them all.
 
 TimePod is based on [Fullscreen
 Clock](https://github.com/schorschii/FsClock-Android) 2.2 by Georg Sieber,
@@ -148,7 +156,9 @@ also free software under the GNU GPL version 3.
           tooltip:
               '**Timers**\n\nCount down from a time you type, as many '
               'timers at once as you like, each ringing as it runs out. '
-              'They keep running on through a restart of the app.',
+              'They keep running on through a restart of the app. Logged in '
+              'to your Pod, every device has the same timers. Tap the cloud '
+              'on the page to share their countdowns too.',
           child: TimersScreen(),
         ),
         SolidMenuItem(

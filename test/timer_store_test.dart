@@ -52,6 +52,27 @@ void main() {
     expect(store.timers, isEmpty);
   });
 
+  test('edits are stamped, passed on, and deletions kept', () async {
+    final store = TimerStore();
+    await store.load();
+    var edits = 0;
+    store.onEdit = () => edits++;
+
+    store.add(const Duration(minutes: 1));
+    final timer = store.timers.single;
+    expect(timer.updated, greaterThan(0));
+
+    store.remove(timer);
+    expect(edits, 2);
+    expect(store.snapshot.deleted.keys, [timer.id]);
+
+    await Future<void>.delayed(Duration.zero);
+
+    final copy = TimerStore();
+    await copy.load();
+    expect(copy.snapshot.deleted.keys, [timer.id]);
+  });
+
   test('the screen stays awake only while a timer runs', () async {
     final store = TimerStore();
     await store.load();

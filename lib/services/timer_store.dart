@@ -36,13 +36,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timepod/models/timer_entry.dart';
 import 'package:timepod/services/screen_awake.dart';
 import 'package:timepod/services/timer_alarm.dart';
+import 'package:timepod/utils/merge_timers.dart';
 
-/// The list of timers, saved to SharedPreferences on every change. Like the
-/// display choices they belong to this device, never synced to the Pod: a
-/// kitchen timer rings in the kitchen.
+/// The list of timers, saved to SharedPreferences on every change.
+///
+/// 20261125 gjw Once the app has connected to a Pod the timers are also kept
+/// there, so every device shows the same ones; see `PodTimers`. Until then
+/// they stay on this device only.
 
 class TimerStore extends ChangeNotifier {
   static const _key = 'timepod_timers';
+  static const _deletedKey = 'timepod_timersDeleted';
 
   // 20261124 gjw Tick four times a second rather than once, so the rings
   // sweep smoothly and each timer's digits change close to its own second,
@@ -51,6 +55,7 @@ class TimerStore extends ChangeNotifier {
   static const _tick = Duration(milliseconds: 250);
 
   final List<TimerEntry> _timers = [];
+  final Map<int, int> _deleted = {};
   Timer? _ticker;
   int _ticks = 0;
 
@@ -58,12 +63,34 @@ class TimerStore extends ChangeNotifier {
 
   List<TimerEntry> get timers => List.unmodifiable(_timers);
 
+  /// Called after the user changes a timer, to pass the change on to the Pod.
+
+  VoidCallback? onEdit;
+
+  /// The timers and deletions as they stand, to merge with the Pod's.
+
+  TimerSet get snapshot =>
+      (timers: List.of(_timers), deleted: Map.of(_deleted));
+
+  /// Take on [set], the timers merged with the Pod's, saving them here.
+
+  void adopt(TimerSet set) {
+    _timers
+      ..clear()
+      ..addAll(set.timers);
+    _deleted
+      ..clear()
+      ..addAll(set.deleted);
+    _changed();
+  }
+
   /// Read the saved timers. Any left running carry on, or are ringing if
   /// they ran out while the app was closed.
 
   Future<void> load() async {
     final prefs = await SharedPreferences.getInstance();
     final saved = prefs.getString(_key);
+    final deleted = prefs.getString(_deletedKey);
 
     _timers
       ..clear()
@@ -72,6 +99,14 @@ class TimerStore extends ChangeNotifier {
           for (final json in jsonDecode(saved) as List)
             TimerEntry.fromJson(json as Map<String, dynamic>),
       ]);
+    _deleted
+      ..clear()
+      ..addAll({
+        if (deleted != null)
+          for (final MapEntry(:key, :value)
+              in (jsonDecode(deleted) as Map).entries)
+            int.parse(key as String): value as int,
+      });
 
     _changed(save: false);
   }
@@ -80,17 +115,26 @@ class TimerStore extends ChangeNotifier {
 
   void add(Duration length) {
     final now = DateTime.now();
+    final stamp = now.millisecondsSinceEpoch;
 
-    _timers.add(TimerEntry(id: now.microsecondsSinceEpoch, length: length));
+    _timers.add(
+      TimerEntry(
+        id: now.microsecondsSinceEpoch,
+        length: length,
+        updated: stamp,
+        ran: stamp,
+      ),
+    );
     _timers.last.start(now);
-    _changed();
+    _edited();
   }
 
   /// Delete [timer].
 
   void remove(TimerEntry timer) {
     _timers.remove(timer);
-    _changed();
+    _deleted[timer.id] = DateTime.now().millisecondsSinceEpoch;
+    _edited();
   }
 
   /// Start a stopped [timer], pause a running one, or stop a ringing one.
@@ -105,28 +149,41 @@ class TimerStore extends ChangeNotifier {
     } else {
       timer.start(now);
     }
-    _changed();
+    _edited(timer);
   }
 
   /// Return [timer] to the length it was set to.
 
   void reset(TimerEntry timer) {
     timer.reset();
-    _changed();
+    _edited(timer);
   }
 
   /// Add a minute to [timer].
 
   void addMinute(TimerEntry timer) {
     timer.addMinute(DateTime.now());
-    _changed();
+    _edited(timer);
   }
 
   /// Name [timer] [label].
 
   void rename(TimerEntry timer, String label) {
     timer.label = label.trim();
+    timer.updated = DateTime.now().millisecondsSinceEpoch;
+    _edited();
+  }
+
+  // 20261125 gjw Pass on a change the user made.
+  //
+  // 20261126 gjw Stamp a change to [timer]'s countdown, so it wins over an
+  // older countdown on the Pod when countdowns are shared. A rename stamps
+  // the timer's settings instead.
+
+  void _edited([TimerEntry? timer]) {
+    timer?.ran = DateTime.now().millisecondsSinceEpoch;
     _changed();
+    onEdit?.call();
   }
 
   // 20261124 gjw Run the ticker only while a timer runs, so an idle Timers
@@ -174,6 +231,10 @@ class TimerStore extends ChangeNotifier {
   Future<void> _save() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_key, jsonEncode(_timers));
+    await prefs.setString(
+      _deletedKey,
+      jsonEncode(_deleted.map((id, at) => MapEntry('$id', at))),
+    );
   }
 }
 

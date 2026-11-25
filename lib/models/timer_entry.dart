@@ -37,6 +37,8 @@ class TimerEntry {
     Duration? total,
     Duration? left,
     this.endAt,
+    this.updated = 0,
+    this.ran = 0,
   }) : total = total ?? length,
        left = left ?? length;
 
@@ -51,6 +53,8 @@ class TimerEntry {
     endAt: json['endAt'] == null
         ? null
         : DateTime.fromMillisecondsSinceEpoch(json['endAt'] as int),
+    updated: json['updated'] as int? ?? 0,
+    ran: json['ran'] as int? ?? 0,
   );
 
   /// Identifies the timer within the list.
@@ -76,6 +80,17 @@ class TimerEntry {
   /// When the timer reaches zero, while it runs.
 
   DateTime? endAt;
+
+  /// When the timer's length or name was last changed, in milliseconds
+  /// since the epoch, so the newer of two copies wins when the timers are
+  /// merged with the Pod.
+
+  int updated;
+
+  /// When the timer was last started, paused, reset or given a minute, so
+  /// the newer of two countdowns wins when countdowns are shared.
+
+  int ran;
 
   /// Whether the timer is counting down, or counting up past zero.
 
@@ -151,5 +166,7 @@ class TimerEntry {
     'total': total.inMilliseconds,
     'left': left.inMilliseconds,
     'endAt': endAt?.millisecondsSinceEpoch,
+    'updated': updated,
+    'ran': ran,
   };
 }

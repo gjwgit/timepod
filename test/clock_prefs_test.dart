@@ -32,6 +32,18 @@ void main() {
     expect(prefs[ClockOption.date], isTrue);
   });
 
+  test('timers are not shared until turned on, and that is kept', () async {
+    final first = ClockPrefs();
+    await first.load();
+    expect(first.shareCountdowns, isFalse);
+
+    await first.setShareCountdowns(true);
+
+    final prefs = ClockPrefs();
+    await prefs.load();
+    expect(prefs.shareCountdowns, isTrue);
+  });
+
   test('the desktop clock opens where it was left until placed', () async {
     final first = ClockPrefs();
     await first.load();

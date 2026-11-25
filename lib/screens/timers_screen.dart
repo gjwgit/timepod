@@ -33,9 +33,11 @@ import 'package:material_ui/material_ui.dart';
 import 'package:timepod/services/timer_store.dart';
 import 'package:timepod/widgets/timer_card.dart';
 import 'package:timepod/widgets/timer_setup.dart';
+import 'package:timepod/widgets/timer_sync_button.dart';
 
 /// A grid of timer cards with a + button to add another. With no timers the
-/// page is the keypad for the first one, as on a phone's clock.
+/// page is the keypad for the first one, as on a phone's clock. Either way
+/// a cloud turns sharing the timers with other devices on and off.
 
 class TimersScreen extends StatelessWidget {
   const TimersScreen({super.key});
@@ -58,7 +60,12 @@ class TimersScreen extends StatelessWidget {
       listenable: timerStore,
       builder: (context, _) {
         final timers = timerStore.timers;
-        if (timers.isEmpty) return TimerSetup(onStart: timerStore.add);
+        if (timers.isEmpty) {
+          return TimerSetup(
+            onStart: timerStore.add,
+            actions: const [TimerSyncButton()],
+          );
+        }
 
         final now = DateTime.now();
 
@@ -107,26 +114,38 @@ Type the length of another timer and start it. Timers run side by side.
                   child: const Icon(Icons.add),
                 ),
               ),
-              body: Align(
-                alignment: Alignment.topCenter,
-                child: SizedBox(
-                  width: width,
-                  child: GridView.builder(
-                    padding: EdgeInsets.fromLTRB(8, 8, 8, bottom),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: columns,
-                      mainAxisExtent: cardHeight,
-                      mainAxisSpacing: 8,
-                      crossAxisSpacing: 8,
-                    ),
-                    itemCount: timers.length,
-                    itemBuilder: (context, i) => TimerCard(
-                      key: ValueKey(timers[i].id),
-                      timer: timers[i],
-                      now: now,
+              // 20261125 gjw The cloud sits bottom left, level with the +
+              // button bottom right, clear of the cards above both.
+
+              body: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: SizedBox(
+                      width: width,
+                      child: GridView.builder(
+                        padding: EdgeInsets.fromLTRB(8, 8, 8, bottom),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: columns,
+                          mainAxisExtent: cardHeight,
+                          mainAxisSpacing: 8,
+                          crossAxisSpacing: 8,
+                        ),
+                        itemCount: timers.length,
+                        itemBuilder: (context, i) => TimerCard(
+                          key: ValueKey(timers[i].id),
+                          timer: timers[i],
+                          now: now,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  Positioned(
+                    left: 16,
+                    bottom: compact ? 20 : 40,
+                    child: const TimerSyncButton(),
+                  ),
+                ],
               ),
             );
           },
