@@ -1,6 +1,6 @@
 /// The root of the widget tree: the theme and the optional Solid login.
 //
-// Time-stamp: <>
+// Time-stamp: <Wednesday 2026-11-25 18:40:58 +1100 Graham Williams>
 //
 /// Copyright (C) 2026, Togaware Pty Ltd
 ///
@@ -56,10 +56,6 @@ class App extends StatelessWidget {
         skipLogin: true,
         image: const AssetImage('assets/images/app_image.jpg'),
         logo: const AssetImage('assets/images/app_icon.png'),
-        continueButtonStyle: const ContinueButtonStyle(
-          visible: true,
-          text: 'Clock',
-        ),
         link: 'https://github.com/gjwgit/timepod/blob/dev/README.md',
         clientId: 'https://gjwgit.github.io/timepod/client-profile.jsonld',
 
