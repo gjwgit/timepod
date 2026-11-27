@@ -37,6 +37,7 @@ import 'package:timepod/screens/settings_screen.dart';
 import 'package:timepod/screens/timers_screen.dart';
 import 'package:timepod/services/desktop_window.dart';
 import 'package:timepod/services/pod_connect.dart';
+import 'package:timepod/services/pod_timers.dart';
 
 /// The scaffold: the Clock, Timers and Settings pages, Fullscreen and, on a desktop,
 /// Desktop Clock buttons in the app bar, and the login status for the
@@ -103,6 +104,10 @@ class _HomeState extends State<Home> {
               onPressed: () => DesktopClock.open(context),
             ),
         ],
+
+        // 20261126 gjw Refresh from Pod in the profile menu, offered by
+        // solidui only while logged in, as in the other Pod apps.
+        onRefreshFromPod: podTimers.refresh,
 
         // 20261002 gjw Always supply the versionConfig. SolidScaffold loads the
         // version only if it is present when the scaffold is first built.

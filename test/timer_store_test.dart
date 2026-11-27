@@ -91,4 +91,32 @@ void main() {
     store.remove(timer);
     expect(screenAwake.isOn, isFalse);
   });
+
+  test('a focused timer starts, and leaves focus once it stops', () async {
+    final store = TimerStore();
+    await store.load();
+
+    store.add(const Duration(minutes: 1));
+    final timer = store.timers.single;
+    store.reset(timer);
+    expect(store.focused, isNull);
+
+    store.focus(timer);
+    expect(store.focused, timer);
+    expect(timer.isRunning, isTrue);
+
+    // Focusing it again goes back to the grid, leaving it running.
+
+    store.focus(timer);
+    expect(store.focused, isNull);
+    expect(timer.isRunning, isTrue);
+
+    store.focus(timer);
+    store.toggle(timer);
+    expect(store.focused, isNull);
+
+    store.focus(timer);
+    store.remove(timer);
+    expect(store.focused, isNull);
+  });
 }

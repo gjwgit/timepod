@@ -37,7 +37,8 @@ import 'package:timepod/widgets/timer_sync_button.dart';
 
 /// A grid of timer cards with a + button to add another. With no timers the
 /// page is the keypad for the first one, as on a phone's clock. Either way
-/// a cloud turns sharing the timers with other devices on and off.
+/// a cloud turns sharing the timers with other devices on and off. A timer
+/// in focus fills the page instead, while it runs.
 
 class TimersScreen extends StatelessWidget {
   const TimersScreen({super.key});
@@ -68,6 +69,20 @@ class TimersScreen extends StatelessWidget {
         }
 
         final now = DateTime.now();
+
+        // 20261128 gjw A timer double tapped into focus fills the page on
+        // its own, the grid coming back once it stops.
+
+        if (timerStore.focused case final focused?) {
+          return Padding(
+            padding: const EdgeInsets.all(8),
+            child: TimerCard(
+              key: ValueKey(focused.id),
+              timer: focused,
+              now: now,
+            ),
+          );
+        }
 
         return LayoutBuilder(
           builder: (context, box) {

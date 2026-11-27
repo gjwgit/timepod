@@ -2,6 +2,8 @@
 
 library;
 
+import 'package:flutter/gestures.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -62,8 +64,10 @@ void main() {
     expect(find.text('5s timer'), findsOneWidget);
     expect(find.text('0:05'), findsOneWidget);
 
+    // A tap on the ring waits out a possible double tap.
+
     await tester.tap(find.byIcon(Icons.pause));
-    await tester.pump();
+    await tester.pump(kDoubleTapTimeout);
     expect(timerStore.timers.single.isRunning, isFalse);
     expect(find.byIcon(Icons.replay), findsOneWidget);
 
@@ -84,5 +88,37 @@ void main() {
     await tester.tap(find.byIcon(Icons.close));
     await tester.pump();
     expect(find.byType(TimerCard), findsNothing);
+  });
+
+  testWidgets('a double tapped timer starts and fills the page', (
+    tester,
+  ) async {
+    timerStore.add(const Duration(minutes: 1));
+    timerStore.add(const Duration(minutes: 2));
+    timerStore.reset(timerStore.timers.first);
+    await pump(tester);
+    expect(find.byType(TimerCard), findsNWidgets(2));
+
+    Future<void> doubleTap(IconData icon) async {
+      await tester.tap(find.byIcon(icon));
+      await tester.pump(kDoubleTapMinTime);
+      await tester.tap(find.byIcon(icon));
+      await tester.pump();
+    }
+
+    await doubleTap(Icons.play_arrow);
+    expect(find.byType(TimerCard), findsOneWidget);
+    expect(find.text('1m timer'), findsOneWidget);
+    expect(timerStore.timers.first.isRunning, isTrue);
+
+    // Pausing it brings back the grid.
+
+    await tester.tap(find.byIcon(Icons.pause));
+    await tester.pump(kDoubleTapTimeout);
+    expect(find.byType(TimerCard), findsNWidgets(2));
+
+    for (final timer in timerStore.timers) {
+      timerStore.remove(timer);
+    }
   });
 }

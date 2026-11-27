@@ -58,10 +58,32 @@ class TimerStore extends ChangeNotifier {
   final Map<int, int> _deleted = {};
   Timer? _ticker;
   int _ticks = 0;
+  int? _focus;
 
   /// The timers, oldest first.
 
   List<TimerEntry> get timers => List.unmodifiable(_timers);
+
+  /// The timer filling the Timers page, if one is in focus. It stays in
+  /// focus only while it runs, the page going back to the grid once it is
+  /// paused, stopped, reset or deleted.
+
+  TimerEntry? get focused =>
+      _timers.where((timer) => timer.id == _focus).firstOrNull;
+
+  /// Start [timer] if it is stopped and fill the Timers page with it, or,
+  /// with it already in focus, go back to the grid.
+
+  void focus(TimerEntry timer) {
+    final leave = _focus == timer.id;
+    _focus = leave ? null : timer.id;
+
+    if (leave || timer.isRunning) {
+      notifyListeners();
+    } else {
+      toggle(timer);
+    }
+  }
 
   /// Called after the user changes a timer, to pass the change on to the Pod.
 
@@ -202,6 +224,13 @@ class TimerStore extends ChangeNotifier {
     } else if (!running) {
       _ticker?.cancel();
       _ticker = null;
+    }
+
+    // 20261128 gjw A focused timer that stops, here or on another device
+    // through the Pod, hands the page back to the grid.
+
+    if (!_timers.any((timer) => timer.id == _focus && timer.isRunning)) {
+      _focus = null;
     }
 
     notifyListeners();

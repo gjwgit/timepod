@@ -21,7 +21,9 @@ seconds, and 24 or 12 hour time. Under **Timers** run as many
 countdown timers as you like, side by side in a grid, each ringing as
 it runs out with a gentle fingerpicked guitar or a classical guitar
 piece, each swelling over 15 seconds, or with beeps, as chosen under
-**Settings**. The screen stays awake while a timer runs.
+**Settings**. The screen stays awake while a timer runs. Double tap a
+timer's time to start it and have it fill the page, back to the grid
+once it stops.
 
 The app needs no login and collects nothing about you. It fetches only
 its public change log, to show whether a newer version is out. Logging

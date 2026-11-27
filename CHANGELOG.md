@@ -23,6 +23,7 @@ Williams](https://togaware.com/Graham.Williams.html).
 
 ## 1.1 Timers
 
++ Double tap a timer to focus it, and Refresh from Pod [1.1.5 20261128 gjw]
 + Timers are kept on Pod with option to share countdowns [1.1.4 20261126 gjw]
 + Alarm sound in Settings: guitar, classical or beeps [1.1.3 20261124 gjw]
 + Keep the screen awake while a timer runs [1.1.2 20261124 gjw]

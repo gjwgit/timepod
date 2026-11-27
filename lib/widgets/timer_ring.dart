@@ -35,7 +35,7 @@ import 'package:timepod/utils/timer_format.dart';
 /// A thin ring that empties as the timer counts down, around the time left
 /// in light digits and, beneath them, the icon for what a tap does: start,
 /// pause, or stop the ringing. The whole ring is the button, as on a phone's
-/// clock.
+/// clock. A double tap makes the timer the focus, filling the page.
 
 class TimerRing extends StatelessWidget {
   const TimerRing({
@@ -71,6 +71,9 @@ class TimerRing extends StatelessWidget {
         : timer.isRunning
         ? (Icons.pause, 'Pause', 'Pause this timer, keeping the time left.')
         : (Icons.play_arrow, 'Start', 'Count down from the time left.');
+    final focus = timerStore.focused == timer
+        ? 'Double tap to go back to all the timers.'
+        : 'Double tap to start it and fill the page with it until it stops.';
 
     return AspectRatio(
       aspectRatio: 1,
@@ -84,12 +87,13 @@ class TimerRing extends StatelessWidget {
 
 **$title**
 
-$body
+$body $focus
 
 ''',
             child: InkWell(
               customBorder: const CircleBorder(),
               onTap: () => timerStore.toggle(timer),
+              onDoubleTap: () => timerStore.focus(timer),
               child: Stack(
                 fit: StackFit.expand,
                 children: [

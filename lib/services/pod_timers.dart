@@ -73,6 +73,7 @@ class PodTimers {
   Timer? _poller;
   Future<void>? _run;
   bool _again = false;
+  Object? _failed;
   DateTime _synced = DateTime(0);
 
   /// Whether the timers can be kept on the Pod, logged in with the security
@@ -140,13 +141,35 @@ class PodTimers {
     }
   }
 
+  /// Sync the timers with the Pod now, for the profile menu's Refresh from
+  /// Pod, returning whether they changed here. Throws if the sync failed,
+  /// so the menu reports it.
+
+  Future<bool> refresh() async {
+    if (!connected.value) {
+      throw StateError(
+        'Your security key is needed to read your timers from your Pod.',
+      );
+    }
+
+    String signature() => jsonEncode(timerSetToJson(timerStore.snapshot));
+
+    final before = signature();
+    await sync();
+    if (_failed case final failed?) throw failed;
+
+    return signature() != before;
+  }
+
   Future<void> _syncAll() async {
     do {
       _again = false;
+      _failed = null;
       try {
         await _syncOnce();
       } on Object catch (e) {
         debugPrint('[PodTimers] sync failed: $e');
+        _failed = e;
         return;
       }
     } while (_again && connected.value);
